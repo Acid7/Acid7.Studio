@@ -52,7 +52,7 @@ export default class Audio {
 			document.body.classList.remove('audio-playing')
 			document.getElementById('audio').innerHTML = "Open Channel"
 			setTimeout(() => {
-				introTextIn()
+				introTextIn(0)
 			}, 1000)
 		}
 
@@ -81,7 +81,6 @@ export default class Audio {
 			// Stars
 
 			if (this.audio.isPlaying && audioTime > 14.5) {
-				console.log("object");
 				this.stars.mesh.position.z = ((audioTime * 0.5) - (14.5 * 0.5))
 			} else {
 				this.stars.mesh.position.z = lerp(this.stars.mesh.position.z, 0, 0.03)

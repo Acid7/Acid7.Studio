@@ -10,12 +10,13 @@
 
 <script>
 import imagesLoaded from 'imagesloaded'
-import { introPyramid, introTextIn } from '@/webgl/world/Animations'
+import { introPyramid, splittingText, introTextIn } from '@/webgl/world/Animations'
 export default {
 	beforeRouteEnter (to, from, next) {
 		next(vm => {
 			imagesLoaded(vm.$el, () => {
 				introPyramid(400)
+				splittingText(0)
 				introTextIn(2000)
 				document.addEventListener('click', (e) => {
 					if (e.target.id == "audio") {
@@ -25,7 +26,7 @@ export default {
 
 				if (!from.name) { // First load transition
 				} else { // Enter transition
-					introTextIn()
+					introTextIn(0)
 				}
 			})
 		})

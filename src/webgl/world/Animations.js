@@ -15,6 +15,37 @@ const introPyramid = (delay) => {
 	})
 }
 
+// Splitting
+
+const splittingText = () => {
+	const subTitle = document.querySelector('.intro-subtitle')
+	const splittingText = Splitting({
+		target: subTitle,
+		by: 'lines'
+	})
+
+	splittingText.forEach(splitResult => {
+		Splitting({ target: splitResult.el, by: 'chars', force: true })
+	})
+
+	splittingText.forEach((splitResult) => {
+		if (splitResult.lines.length != 0) {
+			const wrappedLines = splitResult.lines.map((wordsArr) => `
+				<span class="line">
+					${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace">
+				</span>`).join('')}
+			</span>`).join('')
+			splitResult.el.innerHTML = wrappedLines
+		}
+	})
+
+	// Unwrap
+
+	subTitle.querySelectorAll('.word .word').forEach((item) => {
+		item.outerHTML = item.innerHTML
+	})
+}
+
 
 
 // Intro Text
@@ -47,7 +78,7 @@ const introTextIn = (delay) => {
 		filter: ['blur(10px)', 'blur(0px)'],
 		duration: 500,
 		easing: 'easeOutQuad',
-		delay: 3000,
+		delay: delay + 1000,
 		complete: () => {
 			setTimeout(() => {
 				headerFadeIn()
@@ -55,37 +86,9 @@ const introTextIn = (delay) => {
 			}, 100)}
 	})
 
-	// Subtitle
+	// Subtitle - Transport random
 
 	const subTitle = document.querySelector('.intro-subtitle')
-	const splittingText = Splitting({
-		target: subTitle,
-		by: 'lines'
-	})
-
-	splittingText.forEach(splitResult => {
-		Splitting({ target: splitResult.el, by: 'chars', force: true })
-	})
-
-	splittingText.forEach((splitResult) => {
-		if (splitResult.lines.length != 0) {
-			const wrappedLines = splitResult.lines.map((wordsArr) => `
-				<span class="line">
-					${wordsArr.map((word) => `${word.outerHTML}<span class="whitespace">
-				</span>`).join('')}
-			</span>`).join('')
-			splitResult.el.innerHTML = wrappedLines
-		}
-	})
-
-	// Unwrap
-
-	subTitle.querySelectorAll('.word .word').forEach((item) => {
-		item.outerHTML = item.innerHTML
-	})
-
-	// Transport random
-
 	let textArray = Array.from(subTitle.querySelectorAll('.char'))
 
 	setTimeout(() => {
@@ -111,7 +114,7 @@ const introTextIn = (delay) => {
 			var removeIndex = textArray.indexOf(textArray[rndIndex])
 			textArray.splice(removeIndex, 1)
 		}
-	}, delay - 500)
+	}, delay ? delay - 500 : 10)
 
 }
 
@@ -128,7 +131,7 @@ const introTextOut = () => {
 				easing: 'easeOutCirc',
 			})
 		},
-		targets: document.querySelectorAll('.intro-title, .intro-subtitle'),
+		targets: document.querySelectorAll('.intro-title, .intro-subtitle .char'),
 		duration: 500,
 		delay: 500,
 		opacity: 0,
@@ -174,4 +177,4 @@ const footerFadeOut = () => {
 	document.body.classList.remove('footer-visible')
 }
 
-export { introPyramid, introTextIn, introTextOut }
+export { introPyramid, splittingText, introTextIn, introTextOut }

@@ -1,0 +1,32 @@
+primary-color = #eee
+secondary-color = #e9ba00
+
+transition-opacity()
+	transition opacity .5s
+transition-color()
+	transition color .5s
+
+:root
+	--vertical-rim 2.5%
+	--horizontal-rim 5%
+
+:root
+	--fluid-min-width 320
+	--fluid-max-width 1920
+	--fluid-screen 100vw
+	--fluid-bp calc((var(--fluid-screen) - var(--fluid-min-width) / 16 * 1rem) / (var(--fluid-max-width) - var(--fluid-min-width)))
+
+@media (min-width: 1920px)
+	:root
+		--fluid-screen calc(var(--fluid-max-width) * 1px)
+
+:root
+	--f-0-min 50.00
+	--f-0-max 119.00
+	--intro-size calc(((var(--f-0-min) / 16) * 1rem) + (var(--f-0-max) - var(--f-0-min)) * var(--fluid-bp))
+
+@media (max-width: 667px)
+	:root
+		--horizontal-rim 1rem
+	html
+		font-size .9375rem

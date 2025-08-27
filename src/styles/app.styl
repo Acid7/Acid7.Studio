@@ -1,0 +1,113 @@
+
+// Fonts
+
+@font-face
+	font-family 'Monument'
+	src url('../assets/fonts/MonumentExtended-Ultrabold.woff2') format('woff2'),
+		url('../assets/fonts/MonumentExtended-Ultrabold.woff') format('woff')
+	font-weight 800
+	font-style normal
+	font-display swap
+
+@font-face
+	font-family 'Monument'
+	src url('../assets/fonts/MonumentExtended-Regular.woff2') format('woff2'),
+		url('../assets/fonts/MonumentExtended-Regular.woff') format('woff')
+	font-weight normal
+	font-style normal
+	font-display swap
+
+@font-face
+	font-family 'Federation'
+	src url('../assets/fonts/FederationBold.woff2') format('woff2'),
+		url('../assets/fonts/FederationBold.woff') format('woff')
+	font-weight bold
+	font-style normal
+	font-display swap
+
+@font-face
+	font-family 'Sound'
+	src url('../assets/fonts/sound.woff2') format('woff2'),
+		url('../assets/fonts/sound.woff') format('woff')
+	font-weight normal
+	font-style normal
+	font-display swap
+
+
+// Base
+
+html
+	box-sizing border-box
+*
+*::before
+*::after
+	box-sizing inherit
+
+
+
+// Body
+
+html
+	height 100%
+	scrollbar-width thin
+	overflow hidden
+	-webkit-marquee-increment 0vw // Safari fluid typography fix
+
+body
+	margin 0
+	height 100%
+	-webkit-font-smoothing antialiased
+	-moz-osx-font-smoothing grayscale
+	-webkit-text-size-adjust none
+	font-family 'Monument'
+	background-color #000
+	color #fff
+
+#app
+	overflow auto
+	position fixed
+	top 0
+	left 0
+	right 0
+	bottom 0
+	display flex
+
+.splitting
+	.word
+		display inline-block
+		white-space nowrap
+	.char
+		display inline-block
+		will-change transform, opacity, filter
+		opacity 0
+
+
+// Typography
+
+h1, h2, h3
+	// 
+
+p
+	// 
+
+a
+	color currentColor
+	text-decoration none
+	&:hover
+		color secondary-color
+
+
+
+// Tweakpane
+
+.tp-dfwv
+	z-index 101
+	user-select none
+.tp-rotv
+	font-size 12px !important
+.tp-dfwv
+	top 1rem !important
+	right 1rem !important
+	width auto !important
+.tp-lblv_v
+	width 200px !important
